@@ -1,0 +1,38 @@
+Dog License
+Client: The Department for Pet Protection
+General requirement: Digitize the "Application for a Dog License" form
+Details: They want citizens to be able to submit the form online from their website.
+
+Brainstorming questions?
+•	Application:
+o	Is there any existing application for dog shelter?
+o	If not, is there any application we want this form to be hosted in?
+o	If not, we can review the application scope and Infrastructure.
+o	Is there any future need to possibly extend the application to become more native mobile based?
+•	Infrastructure:
+o	Is there any cloud technology used to integrate your proposed solution?
+o	Or is it more on-prem solution? Or none?
+•	Functional Requirement:
+o	Who is the type of users involved in this process? 
+o	I assume there is one user type “Requester”, Is that Right?
+o	The scope of the request is the create a form for Dog License application. Is this can be extended to include more user operations?
+o	I think we may need to list owner’s dog licenses listed by expirations date. 
+o	Also, listing dog’s owners’ history and adding a dog’s searching for traceability.  Do you think this something you would like include?
+o	What are the mandatory and optional fields you want to include in this form?
+o	What are the optional fields you want to include in this form?
+o	 There should two dog licenses application form to consider, first for new dog registration or a dog an expired registration. Is there any other consideration to include?
+o	Does the requester need to be authenticated?	
+o	If so, what are the data users need to provide to authenticate?
+o	Is using Global account can be considered like Google account, Facebook account, etc.
+o	If we integrate this solution to an existing platform, then we should consider this platform user traceability. Any objection?
+o	How should trace the submitted application?
+o	Who should be involved in processing the data? Is an AI based algorithm, a backend user or hybrid model (AI and human operation)?
+o	What the validation process?
+o	The is the approximated processing deadline? What at the processing indicators (That helps accelerating the process)? 
+o	I suggest informing user through email and phone notification with application progress.
+•	Security:
+o	We need to clarify how user can be authenticated if applicable in the scope of the application.
+•	User experience:
+o	I assume the application should be responsive in many screen sizes, let me know if you have different understanding.
+o	I assume there should be 3 level UI application. The application form, the authentication form and processing form. let me know if you have different understanding.
+
