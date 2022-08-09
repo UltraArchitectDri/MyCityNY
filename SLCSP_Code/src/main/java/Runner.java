@@ -17,7 +17,7 @@ public class Runner {
 
         List<Slcsp> slcsps = Utils.read(SLCSP_CVS,Slcsp.class,true);
 
-        Utils.updateData(slcsps,zips,plans,"slcsp.csv");
+        Utils.updateData(slcsps,zips,plans,"slcsp_output.csv");
 
     }
 

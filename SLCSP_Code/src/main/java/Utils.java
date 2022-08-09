@@ -35,7 +35,7 @@ public class Utils {
                     if (o.toString().equals(Plan.class.toString())) {
                         rows.add((T) new Plan(nextRecord[0], nextRecord[1], nextRecord[2], Float.parseFloat(nextRecord[3]), Integer.parseInt(nextRecord[4])));
                     } else if (o.toString().equals(Slcsp.class.toString())) {
-                        rows.add((T) new Slcsp(Integer.parseInt(nextRecord[0]), nextRecord[1]));
+                        rows.add((T) new Slcsp(nextRecord[0], nextRecord[1]));
                     } else if (o.toString().equals(Zip.class.toString())) {
                         rows.add((T) new Zip(Integer.parseInt(nextRecord[0]), nextRecord[1], Integer.parseInt(nextRecord[2]), nextRecord[3], Integer.parseInt(nextRecord[4])));
                     }
@@ -59,6 +59,7 @@ public class Utils {
                     .build();
 
             beanToCsv.write(rows);
+            writer.close();
         }
     }
 
@@ -67,7 +68,6 @@ public class Utils {
 
         String rate = "";
         Set<Zip> dup= zips.stream()
-                      .filter(i -> Collections.frequency(zips, i) > 1)
                       .filter(zip -> zipCode.equals(zip.getZipCode()))
                       .collect(Collectors.toSet());
         // A ZIP code can also be in
@@ -77,8 +77,7 @@ public class Utils {
             // rate left blank
         }else{
             List<Plan> planRate = plans.stream()
-                    .filter(plan -> dup.stream().findFirst().get().getRateArea().equals(plan.getRateArea()))
-                    .sorted().collect(Collectors.toSet()).stream().toList();
+                    .filter(plan -> plan.getRateArea().equals(dup.stream().findFirst().get().getRateArea())).sorted().toList();
             // Select the second low rate from the list
             rate = String.valueOf(planRate.get(1).getRate());
         }
@@ -88,25 +87,13 @@ public class Utils {
     }
 
     public static void updateData(List<Slcsp> slcsps, List<Zip> zips, List<Plan> plans, String outputPath) throws CsvRequiredFieldEmptyException, CsvDataTypeMismatchException, IOException {
-
         // Read data
-        String rate = "";
-        List<String> list = new ArrayList<>();
-        list.add("zipcode,rate");
+        List<Slcsp> list = new ArrayList<Slcsp>();
         for (Slcsp s : slcsps) {
-            rate = getSecondLowestCostSilverPlan(s.getZipCode(),zips,plans);
-            list.add(s.getZipCode().toString()+','+rate);
+            list.add(new Slcsp(s.getZipCode(),getSecondLowestCostSilverPlan(Integer.parseInt(s.getZipCode()),zips,plans)));
         }
-
-        // Delete Data
-        File outFile = new File(outputPath);
-        if (outFile.exists()) {
-                outFile.delete();
-        }
-
         // Write Data
         write(outputPath,list);
-
     }
 
 

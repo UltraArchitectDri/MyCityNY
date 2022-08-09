@@ -1,6 +1,6 @@
 
 
-public class Plan {
+public class Plan  implements Comparable<Plan> {
 
     private String planId;
     private String state;
@@ -54,5 +54,10 @@ public class Plan {
 
     public void setRateArea(Integer rateArea) {
         this.rateArea = rateArea;
+    }
+
+    @Override
+    public int compareTo(Plan o) {
+        return (int) (this.rate - o.rate);
     }
 }
